@@ -39,4 +39,13 @@ export default {
         }
       }
   }
+
+  //---------------RESPONSIVE
+  
+  @media (max-width: 600px) {
+    .nav-item {
+      font-size: 1px;
+    }
+  }
+  
 </style>

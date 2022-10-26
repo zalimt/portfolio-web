@@ -1,17 +1,31 @@
 <template>
   <HeaderMain />
+  <Carousel>
+    <Slide v-for="(slide, index) in works" :key="index">
+
+    </Slide>
+  </Carousel>
  
 
 </template>
 
 <script>
 import HeaderMain from "./components/Header"
+import Carousel from "./components/Carousel"
+import Slide from "./components/Slide"
 
 
 export default {
   name: 'App',
   components: {
     HeaderMain,
+    Carousel,
+    Slide
+  },
+  setup() {
+    const works = ["ws-1", "ws-2", "ws-3", "ws-4", "ws-5", "ws-6", "ws-7", "ws-8"];
+
+    return works
   },
   data(){
     return {
@@ -28,7 +42,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding-top: 40px;
 }
 
 .container {

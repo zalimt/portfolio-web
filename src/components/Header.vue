@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="container d-fsb">
+        <div class="container d-fsb menu-wrap">
             <div class="left">
                 <a href="">
                     <img :src="logo" alt="">
@@ -28,3 +28,15 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+
+    
+  //---------------RESPONSIVE
+
+    @media (max-width: 600px) {
+        .menu-wrap {
+            flex-direction: column;
+        }
+    }
+</style>

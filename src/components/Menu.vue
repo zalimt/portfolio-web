@@ -41,8 +41,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  
+  ul {
+      display: flex;
+  }
+
+//---------------RESPONSIVE
+
+  @media (max-width: 600px) {
     ul {
-        display: flex;
+      padding: 0;
     }
+  }
+     
 </style>
