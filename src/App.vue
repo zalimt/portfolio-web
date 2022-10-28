@@ -1,6 +1,6 @@
 <template>
-  <HeaderMain />
 <div class="home">
+  <HeaderMain />
   <Carousel class="carousel"  v-slot="{ currentSlide }" >
     <Slide v-for="(slide, index) in carouselSlides" :key="index">
       <div v-show="currentSlide === index + 1" class="slide-info">
@@ -10,16 +10,12 @@
     </Slide>
   </Carousel>
 </div>
-  
- 
-
 </template>
 
 <script>
 import HeaderMain from "./components/Header"
 import Carousel from "./components/Carousel"
 import Slide from "./components/Slide"
-
 
 export default {
   name: 'App',
