@@ -1,6 +1,6 @@
 <template>
-  <HeaderMain />
 <div class="home">
+  <HeaderMain />
   <Carousel class="carousel"  v-slot="{ currentSlide }" >
     <Slide v-for="(slide, index) in carouselSlides" :key="index">
       <div v-show="currentSlide === index + 1" class="slide-info">
@@ -17,9 +17,6 @@
     </Gallery>
   </div>
 </div>
-  
- 
-
 </template>
 
 <script>
@@ -30,6 +27,7 @@ import Gallery from "./components/Gallery.vue"
 import Image from "./components/Image.vue"
 import Masonry from "masonry-layout"
 
+<<<<<<< HEAD
 window.onload = () => {
     const grid = document.querySelector('.gallery');
 
@@ -43,6 +41,8 @@ window.onload = () => {
     return { masonry }
 }
 
+=======
+>>>>>>> 459e49324ad5fb9d7ec30be52a1ffb434d8e6724
 export default {
   name: 'App',
   components: {
@@ -267,7 +267,7 @@ export default {
   background: #333;
   padding: 40px;
   margin-top: 70px;
-  
+
   .gallery {
       margin: 40px auto;
 
