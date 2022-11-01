@@ -9,6 +9,13 @@
       </div>
     </Slide>
   </Carousel>
+  <div class="gallery-wrapper">
+    <Gallery class="gallery">
+      <Image class="image" v-for="(image, ind) in galleryImages" :key="ind">
+        <img :src="require(`./assets/${image.name}.png`)" :alt="image.name">
+      </Image>
+    </Gallery>
+  </div>
 </div>
   
  
@@ -19,14 +26,32 @@
 import HeaderMain from "./components/Header"
 import Carousel from "./components/Carousel"
 import Slide from "./components/Slide"
+import Gallery from "./components/Gallery.vue"
+import Image from "./components/Image.vue"
+import Masonry from "masonry-layout"
 
+window.onload = () => {
+    const grid = document.querySelector('.gallery');
+
+    const masonry = new Masonry(grid, {
+      itemSelector: ".image",
+      fitWidth: true,
+      gutter: 0
+
+    });
+
+    return { masonry }
+}
 
 export default {
   name: 'App',
   components: {
     HeaderMain,
     Carousel,
-    Slide
+    Slide,
+    Gallery,
+    Image,
+    
   },
   setup() {
     // const carouselSlides = ["ws-1", "ws-2", "ws-3", "ws-4", "ws-5", "ws-6", "ws-7", "ws-8"];
@@ -71,8 +96,75 @@ export default {
         webSiteName: "forexinspect",
         siteUrl: "//forexinspect.com/"
       },
-    ]
-    return { carouselSlides }
+    ];
+
+    const galleryImages = [
+      {
+        name: "img-01"
+      },
+      {
+        name: "img-02"
+      },
+      {
+        name: "img-03"
+      },
+      {
+        name: "img-04"
+      },
+      {
+        name: "img-05"
+      },
+      {
+        name: "img-06"
+      },
+      {
+        name: "img-07"
+      },
+      {
+        name: "img-08"
+      },
+      {
+        name: "img-09"
+      },
+      {
+        name: "img-10"
+      },
+      {
+        name: "img-11"
+      },
+      {
+        name: "img-12"
+      },
+      {
+        name: "img-13"
+      },
+      {
+        name: "img-14"
+      },
+      {
+        name: "img-15"
+      },
+      {
+        name: "img-16"
+      },
+      {
+        name: "img-17"
+      },
+      {
+        name: "img-18"
+      },
+      {
+        name: "img-19"
+      },
+      {
+        name: "img-20"
+      },
+      {
+        name: "img-21"
+      }
+    ];
+
+    return { carouselSlides, galleryImages }
   }
 }
 </script>
@@ -128,7 +220,7 @@ export default {
 
     .slide-info {
       width: 100%;
-      max-width: 850px;
+      max-width: 1000px;
       height: auto;
 
       img {
@@ -171,4 +263,22 @@ export default {
     }
   }
 }
+.gallery-wrapper {
+  background: #333;
+  padding: 40px;
+  margin-top: 70px;
+  
+  .gallery {
+      margin: 40px auto;
+
+      .image {
+        width: 30%;
+
+        img {
+          width: 100%;
+        }
+      }
+  }
+}
+
 </style>

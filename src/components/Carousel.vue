@@ -57,6 +57,7 @@ export default {
 .navigate {
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
   padding: 1px;
   height: auto;
   width: 100%;
@@ -66,7 +67,7 @@ export default {
 
   .toggle-page {
     &.left {
-      margin-right: 800px;
+      margin-right: 1000px;
     }
 
       i {
