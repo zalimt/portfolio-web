@@ -10,6 +10,20 @@
       </div>
     </Slide>
   </Carousel>
+  <!-- GALLERY -->
+  <div class="gallery-wrapper">
+      <div v-for="(image, ind) in galleryImages" :key="ind" class="popup-image-wrapper">
+        <div class="popup-image" :class="[currentImage === ind ? activeClass : '']">
+          <img :src="require(`./assets/${image.name}.png`)" :alt="ind">
+          <a class="closePopup" @click="hidePopup"><i class="fa-solid fa-xmark"></i></a>
+        </div>
+    </div>
+    <Gallery class="gallery">
+      <Image class="image" v-for="(image, ind) in galleryImages" :key="ind">
+        <img @click="showPopup(ind)" :src="require(`./assets/${image.name}.png`)" :alt="ind">
+      </Image>
+    </Gallery>
+  </div>
 </div>
 </template>
 
@@ -17,7 +31,10 @@
 import HeaderMain from "./components/Header"
 import Carousel from "./components/Carousel"
 import Slide from "./components/Slide"
-import HeroMsg from "./components/HeroMsg.vue"
+import Gallery from "./components/Gallery.vue"
+import Image from "./components/Image.vue"
+import Masonry from "masonry-layout"
+import { ref } from "vue"
 
 export default {
   name: 'App',
@@ -25,10 +42,13 @@ export default {
     HeaderMain,
     Carousel,
     Slide,
-    HeroMsg
+    Gallery,
+    Image,
+    
   },
   setup() {
-    // const carouselSlides = ["ws-1", "ws-2", "ws-3", "ws-4", "ws-5", "ws-6", "ws-7", "ws-8"];
+   
+    // CAROUSEL IMAGES ARRAY
     const carouselSlides = [
       {
         name: "ws-1",
@@ -70,8 +90,103 @@ export default {
         webSiteName: "forexinspect",
         siteUrl: "//forexinspect.com/"
       },
-    ]
-    return { carouselSlides }
+    ];
+
+    // GALLERY IMAGES ARRAY
+    const galleryImages = [
+      {
+        name: "img-01"
+      },
+      {
+        name: "img-02"
+      },
+      {
+        name: "img-03"
+      },
+      {
+        name: "img-04"
+      },
+      {
+        name: "img-05"
+      },
+      {
+        name: "img-06"
+      },
+      {
+        name: "img-07"
+      },
+      {
+        name: "img-08"
+      },
+      {
+        name: "img-09"
+      },
+      {
+        name: "img-10"
+      },
+      {
+        name: "img-11"
+      },
+      {
+        name: "img-12"
+      },
+      {
+        name: "img-13"
+      },
+      {
+        name: "img-14"
+      },
+      {
+        name: "img-15"
+      },
+      {
+        name: "img-16"
+      },
+      {
+        name: "img-17"
+      },
+      {
+        name: "img-18"
+      },
+      {
+        name: "img-19"
+      },
+      {
+        name: "img-20"
+      },
+      {
+        name: "img-21"
+      }
+    ];
+
+    // MASONRY
+    window.onload = () => {
+      const grid = document.querySelector('.gallery');
+
+      const masonry = new Masonry(grid, {
+        itemSelector: ".image",
+        fitWidth: true,
+        gutter: 0
+
+      });
+
+      return { masonry }
+    };
+
+    // SHOW / HIDE POPUP
+    const currentImage = ref(null);
+
+    const hidePopup = () => {
+      currentImage.value = null;
+    }
+    
+    const showPopup = (number) => {
+      currentImage.value = number;
+    }
+
+    const activeClass = 'visible';
+
+    return { carouselSlides, galleryImages, hidePopup, showPopup, currentImage, activeClass }
   }
 }
 </script>
@@ -127,7 +242,7 @@ export default {
 
     .slide-info {
       width: 100%;
-      max-width: 850px;
+      max-width: 1000px;
       height: auto;
 
       img {
@@ -170,4 +285,73 @@ export default {
     }
   }
 }
+.gallery-wrapper {
+  background: #333;
+  padding: 40px;
+  margin-top: 70px;
+
+  .gallery {
+      margin: 40px auto;
+
+      .image {
+        width: 30%;
+        cursor: pointer;
+
+
+        img {
+          width: 100%;
+        }
+      }
+  }
+
+  .popup-image {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    opacity: 0;
+    z-index: -1;
+    transition: .4s all;
+    
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      width: 80%;
+      max-width: 900px;
+      object-fit: cover;
+    }
+
+    .closePopup {
+      position: absolute;
+      top: 3%;
+      right: 3%;
+      cursor: pointer;
+      z-index: 300;
+
+      i {
+        font-size: 30px;
+        color: #333;
+        background: #FFD600;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    &.visible {
+      opacity: 1;
+      transition: .4s all;
+      z-index: 300;
+    }
+  }
+}
+
 </style>
