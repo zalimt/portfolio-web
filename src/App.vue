@@ -1,6 +1,7 @@
 <template>
 <div class="home">
   <HeaderMain />
+  <HeroMsg />
   <Carousel class="carousel"  v-slot="{ currentSlide }" >
     <Slide v-for="(slide, index) in carouselSlides" :key="index">
       <div v-show="currentSlide === index + 1" class="slide-info">
@@ -16,13 +17,15 @@
 import HeaderMain from "./components/Header"
 import Carousel from "./components/Carousel"
 import Slide from "./components/Slide"
+import HeroMsg from "./components/HeroMsg.vue"
 
 export default {
   name: 'App',
   components: {
     HeaderMain,
     Carousel,
-    Slide
+    Slide,
+    HeroMsg
   },
   setup() {
     // const carouselSlides = ["ws-1", "ws-2", "ws-3", "ws-4", "ws-5", "ws-6", "ws-7", "ws-8"];
